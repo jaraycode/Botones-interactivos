@@ -1,12 +1,16 @@
-import serial
+#import serial
 import time
 import os
-apps = ['Notepad.exe', 'Word.exe', 'Calculator.exe', 'Whatsapp.exe'] # Aplicaciones
-port = "COM4"
-v = 9600
-set = serial.Serial(puerto = port,baudrate = v)
+apps = {'Bloc de notas':'Notepad.exe', 
+        'Word':'Word.exe', 
+        'Calculadora':'Calculator.exe', 
+        'Whatsapp':'Whatsapp.exe'} # Aplicaciones
 
-int = int(set.readline())
+#port = "COM4"
+#v = 9600
+#set = serial.Serial(puerto = port,baudrate = v)
+
+#int = int(set.readline())
 #Funciones
 def menu() -> None:
     print('Escoger aplicacion'.center(30,'-'))
@@ -15,6 +19,7 @@ def menu() -> None:
 def aplicacion(app) -> None:
     os.system(app)
 
+#Bucle infinito que sigue hasta que se genere el break
 while(True):
     time.sleep(1)
     menu()
@@ -24,21 +29,21 @@ while(True):
     #int = int(set.readline())
     #Relacionado con la seleccion
     if var == 1:
-        print(f'Usted ha seleccionado la aplicacion {apps[var-1]}')
-        aplicacion(apps[var-1])
+        print(f'Usted ha seleccionado la aplicacion "Bloc de notas"')
+        aplicacion(apps.get('Bloc de notas'))
     elif var == 2:
-        print(f'Usted ha seleccionado la aplicacion {apps[var-1]}')
-        aplicacion(apps[var-1])
+        print(f'Usted ha seleccionado la aplicacion "Word"')
+        aplicacion(apps.get('Word'))
     elif var == 3:
-        print(f'Usted ha seleccionado la aplicacion {apps[var-1]}')
-        aplicacion(apps[var-1])
+        print(f'Usted ha seleccionado la aplicacion Calculadora')
+        aplicacion(apps.get('Calculadora'))
     elif var == 4:
-        print(f'Usted ha seleccionado la aplicacion {apps[var-1]}')
-        aplicacion(apps[var-1])
+        print(f'Usted ha seleccionado la aplicacion Whatsapp')
+        aplicacion(apps.get('Whatsapp'))
     elif var == 5:
         print('Gracias por usar')
         break
     else:
         print('Valor invalido')
 
-set.close()
+#set.close()
