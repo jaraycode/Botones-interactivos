@@ -1,16 +1,16 @@
-#import serial
-import time
-import os
+import serial, time, os
 apps = {'Bloc de notas':'Notepad.exe', 
-        'Word':'Word.exe', 
-        'Calculadora':'Calculator.exe', 
+        'Chrome':'"C:\Program Files\Google\Chrome\Application\Chrome.exe"', 
+        'Proteus 7':'"C:\Program Files (x86)\Labcenter Electronics\Proteus 7 Professional\BIN\ISIS.exe"', 
         'Whatsapp':'Whatsapp.exe'} # Aplicaciones
+#Alistando puerto serial
+port = "COM4"
+v = 9600
+bs = 8
+pr = 'N'
+tout = 1
+set = serial.Serial(puerto = port,baudrate = v, bytesize = bs,parity = pr,timeout = tout)
 
-#port = "COM4"
-#v = 9600
-#set = serial.Serial(puerto = port,baudrate = v)
-
-#int = int(set.readline())
 #Funciones
 def menu() -> None:
     print('Escoger aplicacion'.center(30,'-'))
@@ -21,29 +21,28 @@ def aplicacion(app) -> None:
 
 #Bucle infinito que sigue hasta que se genere el break
 while(True):
-    time.sleep(1)
+    time.sleep(2)
     menu()
-    #respuesta_bytes = set.read()
-    var = int(input('Escoger aplicacion: '))
-    #print('Escoger aplicacion: ')
-    #int = int(set.readline())
+    #var = int(input('Escoger aplicacion: '))
+    print('Escoger aplicacion: ')
+    var = set.read()
     #Relacionado con la seleccion
-    if var == 1:
+    if (var == b'1'):
         print(f'Usted ha seleccionado la aplicacion "Bloc de notas"')
         aplicacion(apps.get('Bloc de notas'))
-    elif var == 2:
+    elif (var == b'2'):
         print(f'Usted ha seleccionado la aplicacion "Word"')
         aplicacion(apps.get('Word'))
-    elif var == 3:
-        print(f'Usted ha seleccionado la aplicacion Calculadora')
-        aplicacion(apps.get('Calculadora'))
-    elif var == 4:
-        print(f'Usted ha seleccionado la aplicacion Whatsapp')
+    elif (var == b'3'):
+        print(f'Usted ha seleccionado la aplicacion "Proteus 7"')
+        aplicacion(apps.get('Proteus 7'))
+    elif (var == b'4'):
+        print(f'Usted ha seleccionado la aplicacion "Whatsapp"')
         aplicacion(apps.get('Whatsapp'))
-    elif var == 5:
-        print('Gracias por usar')
-        break
+    #elif var == 5:
+        #print('Gracias por usar')
+        #break
     else:
         print('Valor invalido')
 
-#set.close()
+set.close()
