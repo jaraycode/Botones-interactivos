@@ -4,8 +4,8 @@ apps = {'Bloc de notas':'Notepad.exe',
         'Proteus 7':'"C:\Program Files (x86)\Labcenter Electronics\Proteus 7 Professional\BIN\ISIS.exe"', 
         'Whatsapp':'Whatsapp.exe'} # Aplicaciones
 #Alistando puerto serial
-port = "COM4"
-v = 9600
+port = "COM1"
+v = 1200
 bs = 8
 pr = 'N'
 tout = 1
